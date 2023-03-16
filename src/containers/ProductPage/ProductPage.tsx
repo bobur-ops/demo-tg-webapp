@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Addon from "../../components/Addon/Addon";
 import { useGlobalStore } from "../../context/globalContext";
@@ -7,15 +7,29 @@ import "./ProductPage.css";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { getProduct } = useGlobalStore();
+  const { getProduct, addToChart } = useGlobalStore();
   const { tg } = useTelegram();
   const product = getProduct(id as string);
 
+  const onSendData = useCallback(() => {
+    if (product) {
+      addToChart(product);
+    }
+    window.location.href = "/chart";
+  }, [product]);
+
   useEffect(() => {
     tg.MainButton.setParams({
-      text: `Купить ${product?.price}}`,
+      text: `Купить ${product?.price}`,
     });
     tg.MainButton.show();
+  }, []);
+
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
   }, []);
 
   return (
