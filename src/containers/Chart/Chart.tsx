@@ -39,7 +39,7 @@ const Chart = () => {
   const [delieveryWay, setDelieveryWay] = React.useState(
     "Самовызов по номеру заказа"
   );
-  const { tg, queryId } = useTelegram();
+  const { tg, queryId, onClose } = useTelegram();
 
   React.useEffect(() => {
     tg.MainButton.setParams({
@@ -49,8 +49,8 @@ const Chart = () => {
     tg.MainButton.show();
   }, []);
 
-  const onSendData = React.useCallback(() => {
-    alert(`Оплачено! ${queryId}`);
+  const onSendData = React.useCallback(async () => {
+    alert(`Оплачено!`);
     const data = {
       queryId,
       products: chart,
@@ -58,13 +58,15 @@ const Chart = () => {
       delievery_time: "17:00",
     };
 
-    fetch("http://localhost:8000/pay", {
+    await fetch("http://localhost:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
+
+    onClose();
   }, [queryId, chart, delieveryWay]);
 
   React.useEffect(() => {
