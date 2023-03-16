@@ -33,11 +33,13 @@ const SelectDeliever: React.FC<ISelectDeliever> = ({ onChange, value }) => {
 };
 
 const Chart = () => {
-  const chart: IProduct[] = JSON.parse(localStorage.chart);
+  const [chart, setChart] = React.useState<IProduct[]>(
+    JSON.parse(localStorage.chart)
+  );
   const [delieveryWay, setDelieveryWay] = React.useState(
     "Самовызов по номеру заказа"
   );
-  const { tg } = useTelegram();
+  const { tg, queryId } = useTelegram();
 
   React.useEffect(() => {
     tg.MainButton.setParams({
@@ -47,7 +49,22 @@ const Chart = () => {
     tg.MainButton.show();
   }, []);
 
-  const onSendData = () => {};
+  const onSendData = () => {
+    const data = {
+      queryId,
+      products: chart,
+      delievery: delieveryWay,
+      delievery_time: "17:00",
+    };
+
+    fetch("http://localhost:8000/pay", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  };
 
   React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -56,15 +73,24 @@ const Chart = () => {
     };
   }, []);
 
+  const deleteChartItem = (id: number) => {
+    const newChart = chart.filter((item) => item.id !== id);
+    setChart(newChart);
+
+    localStorage.chart = JSON.stringify(newChart);
+  };
+
   return (
     <div className="chart">
       <div className="chart-title">Оформление заказа</div>
       <div className="chart-items">
         {chart?.map((item) => (
           <div className="chart-item" key={item.id}>
-            <div className="chart-item__name">{item.title}</div>
+            <div className="chart-item__name">
+              {`${item.title} • `} <span>{getFormatPrice(item.price)}</span>
+            </div>
             <div className="chart-item__price">
-              {getFormatPrice(item.price)}
+              <button onClick={() => deleteChartItem(item.id)}>Удалить</button>
             </div>
           </div>
         ))}
@@ -83,6 +109,11 @@ const Chart = () => {
         <div className="label">Комментарий</div>
         <textarea />
       </div>
+      <button style={{ marginTop: "20px" }}>
+        <a href="/" style={{ color: "white", textDecoration: "none" }}>
+          Вернуться на главный экран
+        </a>
+      </button>
     </div>
   );
 };

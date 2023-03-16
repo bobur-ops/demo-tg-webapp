@@ -50,7 +50,11 @@ const ProductPage = () => {
             Сливочный кофейный напиток с добавлением авторской лаванды
           </div>
         </div>
-        <button onClick={onSendData}>onSendData</button>
+        <button style={{ marginTop: "20px" }}>
+          <a href="/" style={{ color: "white", textDecoration: "none" }}>
+            Вернуться на главный экран
+          </a>
+        </button>
       </div>
     </div>
   );
