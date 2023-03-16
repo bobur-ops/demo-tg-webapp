@@ -60,7 +60,7 @@ const Chart = () => {
       delievery_time: "17:00",
     };
 
-    await fetch("http://localhost:8000/pay", {
+    await fetch("http://v1328936.hosted-by-vdsina.ru:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
