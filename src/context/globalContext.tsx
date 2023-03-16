@@ -6,6 +6,7 @@ interface IGlobalContext {
   products: IProduct[];
   chart: IProduct[];
   addToChart: (product: IProduct) => void;
+  getProduct: (id: string | number) => IProduct | undefined;
 }
 
 const StoreContext = createContext<IGlobalContext | null>(null);
@@ -28,8 +29,14 @@ export const GlobalContextProvider: React.FC<StoreProviderType> = ({
     }
   };
 
+  const getProduct = (id: number | string) => {
+    const product = products.find((item) => item.id == id);
+
+    return product;
+  };
+
   return (
-    <StoreContext.Provider value={{ chart, products, addToChart }}>
+    <StoreContext.Provider value={{ chart, products, addToChart, getProduct }}>
       {children}
     </StoreContext.Provider>
   );

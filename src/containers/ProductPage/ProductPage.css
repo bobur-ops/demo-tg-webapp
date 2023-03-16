@@ -1,0 +1,14 @@
+.product-page {
+}
+.product-image img {
+  width: 100%;
+  aspect-ratio: 16/11;
+  object-fit: cover;
+  object-position: center;
+}
+.product-info {
+  padding: 15px;
+}
+.product-title {
+  font-weight: bold;
+}
