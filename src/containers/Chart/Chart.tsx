@@ -50,7 +50,7 @@ const Chart = () => {
   }, []);
 
   const onSendData = React.useCallback(() => {
-    alert("Оплачено!");
+    alert(`Оплачено! ${queryId}`);
     const data = {
       queryId,
       products: chart,
