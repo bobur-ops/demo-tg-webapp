@@ -4,6 +4,7 @@ import Addon from "../../components/Addon/Addon";
 import { useGlobalStore } from "../../context/globalContext";
 import { getFormatPrice } from "../../utils";
 import { useTelegram } from "../../utils/useTelegram";
+import { useNavigate } from "react-router-dom";
 import "./ProductPage.css";
 
 const ProductPage = () => {
@@ -11,6 +12,7 @@ const ProductPage = () => {
   const { getProduct, addToChart } = useGlobalStore();
   const { tg } = useTelegram();
   const product = getProduct(id as string);
+  const navigate = useNavigate();
 
   const onSendData = useCallback(() => {
     const chart = localStorage.chart;
@@ -20,7 +22,7 @@ const ProductPage = () => {
     } else {
       localStorage.chart = JSON.stringify([product]);
     }
-    window.location.href = "/chart";
+    navigate("/chart");
   }, [product]);
 
   useEffect(() => {
