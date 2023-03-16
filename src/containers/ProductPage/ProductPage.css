@@ -1,5 +1,3 @@
-.product-page {
-}
 .product-image img {
   width: 100%;
   aspect-ratio: 16/11;
@@ -11,4 +9,27 @@
 }
 .product-title {
   font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.product-description {
+  margin-bottom: 20px;
+}
+
+.label {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.product-description .desc {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.addons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

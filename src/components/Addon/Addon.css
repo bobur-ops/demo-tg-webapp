@@ -1,0 +1,20 @@
+.addon {
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+.addon-checkbox {
+  margin-bottom: -2px;
+}
+.addon-label {
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+.addon-price {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
