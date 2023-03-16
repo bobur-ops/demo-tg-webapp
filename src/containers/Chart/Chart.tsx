@@ -68,6 +68,7 @@ const Chart = () => {
       body: JSON.stringify(data),
     });
 
+    localStorage.chart = JSON.stringify([]);
     onClose();
   }, [queryId, chart, delieveryWay]);
 
