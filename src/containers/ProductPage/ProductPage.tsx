@@ -20,7 +20,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     tg.MainButton.setParams({
-      text: `Купить ${product?.price}`,
+      text: `Купить ${product?.price} сум`,
     });
     tg.MainButton.show();
   }, []);
