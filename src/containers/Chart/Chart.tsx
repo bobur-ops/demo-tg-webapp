@@ -60,7 +60,7 @@ const Chart = () => {
       delievery_time: "17:00",
     };
 
-    fetch("http://v1328936.hosted-by-vdsina.ru:8000/pay", {
+    await fetch("http://v1328936.hosted-by-vdsina.ru:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,6 @@ const Chart = () => {
       body: JSON.stringify(data),
     });
 
-    localStorage.chart = JSON.stringify([]);
     onClose();
   }, [queryId, chart, delieveryWay]);
 
