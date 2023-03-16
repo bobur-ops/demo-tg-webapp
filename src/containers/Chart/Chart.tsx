@@ -60,7 +60,7 @@ const Chart = () => {
       delievery_time: "17:00",
     };
 
-    await fetch("109.107.177.58:8000/pay", {
+    await fetch("https://various-roan-bean.glitch.me/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
