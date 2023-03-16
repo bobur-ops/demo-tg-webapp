@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { getFormatPrice } from "../../../utils";
 interface ProductItemProps {
   img: string;
@@ -9,13 +10,13 @@ interface ProductItemProps {
 
 const ProductItem: React.FC<ProductItemProps> = ({ img, title, price, id }) => {
   return (
-    <a href={`/product/${id}`} className="product-item">
+    <Link to={`/product/${id}`} className="product-item">
       <div className="product-item__img">
         <img src={img} alt="" />
       </div>
       <div className="product-item__title">{title}</div>
       <div className="product-item__price">{getFormatPrice(price)}</div>
-    </a>
+    </Link>
   );
 };
 

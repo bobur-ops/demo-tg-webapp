@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Addon from "../../components/Addon/Addon";
 import { useGlobalStore } from "../../context/globalContext";
 import { getFormatPrice } from "../../utils";
@@ -51,9 +51,9 @@ const ProductPage = () => {
           </div>
         </div>
         <button style={{ marginTop: "20px" }}>
-          <a href="/" style={{ color: "white", textDecoration: "none" }}>
+          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
             Вернуться на главный экран
-          </a>
+          </Link>
         </button>
       </div>
     </div>

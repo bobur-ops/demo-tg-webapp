@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useGlobalStore } from "../../context/globalContext";
 import { getFormatPrice } from "../../utils";
 import { useTelegram } from "../../utils/useTelegram";
@@ -60,7 +61,7 @@ const Chart = () => {
       comment,
     };
 
-    fetch("http://localhost:8000/pay", {
+    await fetch("http://v1328936.hosted-by-vdsina.ru:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,6 +69,7 @@ const Chart = () => {
       body: JSON.stringify(data),
     });
 
+    localStorage.chart = JSON.stringify([]);
     onClose();
   }, [queryId, chart, delieveryWay]);
 
@@ -118,9 +120,9 @@ const Chart = () => {
         />
       </div>
       <button style={{ marginTop: "20px" }}>
-        <a href="/" style={{ color: "white", textDecoration: "none" }}>
+        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
           Вернуться на главный экран
-        </a>
+        </Link>
       </button>
     </div>
   );

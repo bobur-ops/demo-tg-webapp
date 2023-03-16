@@ -3,16 +3,17 @@ import "./Home.css";
 import { FiShoppingCart } from "react-icons/fi";
 import ProductList from "./components/ProductList";
 import { useGlobalStore } from "../../context/globalContext";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { products } = useGlobalStore();
 
   return (
     <div className="home">
-      <a href="/chart" className="home-top">
+      <Link to="/chart" className="home-top">
         <FiShoppingCart fontSize={18} />
         Корзина
-      </a>
+      </Link>
       <ProductList products={products} />
     </div>
   );
