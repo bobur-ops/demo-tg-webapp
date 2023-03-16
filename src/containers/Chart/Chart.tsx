@@ -33,7 +33,7 @@ const SelectDeliever: React.FC<ISelectDeliever> = ({ onChange, value }) => {
 };
 
 const Chart = () => {
-  const { chart } = useGlobalStore();
+  const chart: IProduct[] = JSON.parse(localStorage.chart);
   const [delieveryWay, setDelieveryWay] = React.useState(
     "Самовызов по номеру заказа"
   );
@@ -60,7 +60,7 @@ const Chart = () => {
     <div className="chart">
       <div className="chart-title">Оформление заказа</div>
       <div className="chart-items">
-        {chart.map((item) => (
+        {chart?.map((item) => (
           <div className="chart-item" key={item.id}>
             <div className="chart-item__name">{item.title}</div>
             <div className="chart-item__price">

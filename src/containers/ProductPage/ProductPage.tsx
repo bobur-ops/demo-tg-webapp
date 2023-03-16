@@ -13,8 +13,12 @@ const ProductPage = () => {
   const product = getProduct(id as string);
 
   const onSendData = useCallback(() => {
-    if (product) {
-      addToChart(product);
+    const chart = localStorage.chart;
+    console.log(chart);
+    if (chart) {
+      localStorage.chart = JSON.stringify([product, ...JSON.parse(chart)]);
+    } else {
+      localStorage.chart = JSON.stringify([product]);
     }
     window.location.href = "/chart";
   }, [product]);
@@ -46,6 +50,7 @@ const ProductPage = () => {
             Сливочный кофейный напиток с добавлением авторской лаванды
           </div>
         </div>
+        <button onClick={onSendData}>onSendData</button>
       </div>
     </div>
   );
