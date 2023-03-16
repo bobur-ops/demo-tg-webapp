@@ -71,7 +71,7 @@ const Chart = () => {
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
     };
-  }, []);
+  }, [onSendData]);
 
   const deleteChartItem = (id: number) => {
     const newChart = chart.filter((item) => item.id !== id);

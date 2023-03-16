@@ -35,7 +35,7 @@ const ProductPage = () => {
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
     };
-  }, []);
+  }, [onSendData]);
 
   return (
     <div className="product-page">
