@@ -58,7 +58,6 @@ const Chart = () => {
       products: chart,
       delievery: delieveryWay,
       delievery_time: "17:00",
-      comment,
     };
 
     fetch("http://localhost:8000/pay", {
@@ -71,7 +70,7 @@ const Chart = () => {
 
     localStorage.chart = JSON.stringify([]);
     onClose();
-  }, [queryId, chart, delieveryWay, comment]);
+  }, [queryId, chart, delieveryWay]);
 
   React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
