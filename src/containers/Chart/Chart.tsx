@@ -61,7 +61,7 @@ const Chart = () => {
       comment,
     };
 
-    fetch("http://v1328936.hosted-by-vdsina.ru:8000/pay", {
+    fetch("109.107.177.58:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
