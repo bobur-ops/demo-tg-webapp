@@ -61,7 +61,7 @@ const Chart = () => {
       comment,
     };
 
-    await fetch("http://v1328936.hosted-by-vdsina.ru:8000/pay", {
+    fetch("http://v1328936.hosted-by-vdsina.ru:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
