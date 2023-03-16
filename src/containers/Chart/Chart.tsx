@@ -39,6 +39,8 @@ const Chart = () => {
   const [delieveryWay, setDelieveryWay] = React.useState(
     "Самовызов по номеру заказа"
   );
+  const [comment, setComment] = React.useState("");
+
   const { tg, queryId, onClose } = useTelegram();
 
   React.useEffect(() => {
@@ -55,9 +57,10 @@ const Chart = () => {
       products: chart,
       delievery: delieveryWay,
       delievery_time: "17:00",
+      comment,
     };
 
-    await fetch("http://localhost:8000/pay", {
+    fetch("http://localhost:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +112,10 @@ const Chart = () => {
 
       <div className="comment-section">
         <div className="label">Комментарий</div>
-        <textarea />
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
       </div>
       <button style={{ marginTop: "20px" }}>
         <a href="/" style={{ color: "white", textDecoration: "none" }}>
