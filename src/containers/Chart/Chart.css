@@ -1,0 +1,60 @@
+.chart {
+  padding: 10px;
+}
+.chart-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.chart-items {
+  margin-bottom: 20px;
+}
+
+.chart-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  display: flex;
+}
+
+.chart-item__name {
+  font-weight: 500;
+  margin-right: auto;
+}
+
+.chart-item__price {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+.chart-label {
+  margin-bottom: 10px;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.select-item {
+  width: 100%;
+  font-weight: 500;
+  border-radius: 8px;
+  outline: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 7px 15px;
+}
+
+.select-item.active {
+  background: #904fff;
+  outline: none;
+  color: white;
+}
+.comment-section {
+  margin-top: 20px;
+}
+.comment-section textarea {
+  width: 100%;
+  height: 90px;
+  border-radius: 10px;
+  padding: 10px;
+  outline: 1px solid #904fff;
+}

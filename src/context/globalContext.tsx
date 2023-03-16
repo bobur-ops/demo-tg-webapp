@@ -19,7 +19,14 @@ export const GlobalContextProvider: React.FC<StoreProviderType> = ({
   children,
 }) => {
   const products: IProduct[] = Products;
-  const chart: IProduct[] = [];
+  const chart: IProduct[] = [
+    {
+      img: "https://cdn.express24.uz/i/600/600/upload/iblock/611/6114fcf70d1e0b0769124227bba62d5b.JPG",
+      title: "Ice Latte",
+      id: 2,
+      price: "40000",
+    },
+  ];
 
   const addToChart = (product: IProduct) => {
     if (chart.some((item) => item.id === product.id)) {

@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Addon from "../../components/Addon/Addon";
 import { useGlobalStore } from "../../context/globalContext";
+import { getFormatPrice } from "../../utils";
 import { useTelegram } from "../../utils/useTelegram";
 import "./ProductPage.css";
 
@@ -20,7 +21,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     tg.MainButton.setParams({
-      text: `Купить ${product?.price} сум`,
+      text: `Купить ${getFormatPrice(product?.price as string)}`,
     });
     tg.MainButton.show();
   }, []);
