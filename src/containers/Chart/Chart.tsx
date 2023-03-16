@@ -58,10 +58,9 @@ const Chart = () => {
       products: chart,
       delievery: delieveryWay,
       delievery_time: "17:00",
-      comment,
     };
 
-    fetch("109.107.177.58:8000/pay", {
+    fetch("http://localhost:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
