@@ -43,6 +43,8 @@ const Chart = () => {
     tg.MainButton.setParams({
       text: `Оплатить`,
     });
+
+    tg.MainButton.show();
   }, []);
 
   const onSendData = () => {};
