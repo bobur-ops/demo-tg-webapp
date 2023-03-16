@@ -49,7 +49,7 @@ const Chart = () => {
     tg.MainButton.show();
   }, []);
 
-  const onSendData = () => {
+  const onSendData = React.useCallback(() => {
     const data = {
       queryId,
       products: chart,
@@ -64,7 +64,7 @@ const Chart = () => {
       },
       body: JSON.stringify(data),
     });
-  };
+  }, [queryId, chart, delieveryWay]);
 
   React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
