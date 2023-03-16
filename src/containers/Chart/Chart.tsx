@@ -58,6 +58,7 @@ const Chart = () => {
       products: chart,
       delievery: delieveryWay,
       delievery_time: "17:00",
+      comment,
     };
 
     await fetch("https://various-roan-bean.glitch.me/pay", {
