@@ -15,7 +15,6 @@ const ProductPage = () => {
   const navigate = useNavigate();
 
   const onSendData = useCallback(() => {
-    localStorage.chart = JSON.stringify([]);
     const chart = localStorage.chart;
     if (chart) {
       localStorage.chart = JSON.stringify([product, ...JSON.parse(chart)]);
@@ -52,7 +51,6 @@ const ProductPage = () => {
             Сливочный кофейный напиток с добавлением авторской лаванды
           </div>
         </div>
-        <button onClick={onSendData}>Clikc</button>
         <button style={{ marginTop: "20px" }}>
           <Link to="/" style={{ color: "white", textDecoration: "none" }}>
             Вернуться на главный экран
