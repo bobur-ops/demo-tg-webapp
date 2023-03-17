@@ -9,17 +9,14 @@ import "./ProductPage.css";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { getProduct, addToChart } = useGlobalStore();
+  const { getProduct, addToChart, chart } = useGlobalStore();
   const { tg } = useTelegram();
   const product = getProduct(id as string);
   const navigate = useNavigate();
 
   const onSendData = useCallback(() => {
-    const chart = localStorage.chart;
-    if (chart) {
-      localStorage.chart = JSON.stringify([product, ...JSON.parse(chart)]);
-    } else {
-      localStorage.chart = JSON.stringify([product]);
+    if (product) {
+      addToChart(product);
     }
     navigate("/chart");
   }, [product]);

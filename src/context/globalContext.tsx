@@ -7,6 +7,7 @@ interface IGlobalContext {
   chart: IProduct[];
   addToChart: (product: IProduct) => void;
   getProduct: (id: string | number) => IProduct | undefined;
+  clearChart: () => void;
 }
 
 const StoreContext = createContext<IGlobalContext | null>(null);
@@ -19,13 +20,13 @@ export const GlobalContextProvider: React.FC<StoreProviderType> = ({
   children,
 }) => {
   const products: IProduct[] = Products;
-  const chart: IProduct[] = [];
+  const [chart, setChart] = React.useState<IProduct[]>([]);
 
   const addToChart = (product: IProduct) => {
     if (chart.some((item) => item.id === product.id)) {
-      chart.filter((item) => item.id !== product.id);
+      setChart(chart.filter((item) => item.id !== product.id));
     } else {
-      chart.push(product);
+      setChart((prev) => [product, ...prev]);
     }
   };
 
@@ -35,8 +36,12 @@ export const GlobalContextProvider: React.FC<StoreProviderType> = ({
     return product;
   };
 
+  const clearChart = () => setChart([]);
+
   return (
-    <StoreContext.Provider value={{ chart, products, addToChart, getProduct }}>
+    <StoreContext.Provider
+      value={{ chart, products, addToChart, getProduct, clearChart }}
+    >
       {children}
     </StoreContext.Provider>
   );

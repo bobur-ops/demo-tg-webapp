@@ -34,9 +34,10 @@ const SelectDeliever: React.FC<ISelectDeliever> = ({ onChange, value }) => {
 };
 
 const Chart = () => {
-  const [chart, setChart] = React.useState<IProduct[]>(
-    JSON.parse(localStorage.chart)
-  );
+  // const [chart, setChart] = React.useState<IProduct[]>(
+  //   JSON.parse(localStorage.chart)
+  // );
+  const { chart, addToChart, clearChart } = useGlobalStore();
   const [delieveryWay, setDelieveryWay] = React.useState(
     "Самовызов по номеру заказа"
   );
@@ -78,7 +79,7 @@ const Chart = () => {
       body: JSON.stringify(data),
     });
 
-    localStorage.chart = JSON.stringify([]);
+    clearChart();
     onClose();
   }, [queryId, chart, delieveryWay, comment]);
 
@@ -89,11 +90,8 @@ const Chart = () => {
     };
   }, [onSendData]);
 
-  const deleteChartItem = (id: number) => {
-    const newChart = chart.filter((item) => item.id !== id);
-    setChart(newChart);
-
-    localStorage.chart = JSON.stringify(newChart);
+  const deleteChartItem = (item: IProduct) => {
+    addToChart(item);
   };
 
   return (
@@ -106,7 +104,7 @@ const Chart = () => {
               {`${item.title} • `} <span>{getFormatPrice(item.price)}</span>
             </div>
             <div className="chart-item__price">
-              <button onClick={() => deleteChartItem(item.id)}>Удалить</button>
+              <button onClick={() => deleteChartItem(item)}>Удалить</button>
             </div>
           </div>
         ))}
