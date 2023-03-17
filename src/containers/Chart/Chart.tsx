@@ -71,7 +71,7 @@ const Chart = () => {
       price: price,
     };
 
-    await fetch("https://web-app-demo.herokuapp.com//pay", {
+    await fetch("https://web-app-demo.herokuapp.com/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
