@@ -61,7 +61,7 @@ const Chart = () => {
       comment,
     };
 
-    fetch("https://various-roan-bean.glitch.me/pay", {
+    await fetch("https://various-roan-bean.glitch.me/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const Chart = () => {
 
     localStorage.chart = JSON.stringify(null);
     onClose();
-  }, [queryId, chart, delieveryWay]);
+  }, [queryId, chart, delieveryWay, comment]);
 
   React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
