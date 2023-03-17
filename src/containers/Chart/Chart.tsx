@@ -53,12 +53,21 @@ const Chart = () => {
   }, []);
 
   const onSendData = React.useCallback(async () => {
+    const getTotalPrice = () => {
+      return chart.reduce((acc, item) => {
+        const price = parseInt(item.price);
+
+        return (acc += price);
+      }, 0);
+    };
+    const price = `${getFormatPrice(getTotalPrice())} сум`;
     const data = {
       queryId,
       products: chart,
       delievery: delieveryWay,
       delievery_time: "17:00",
       comment,
+      price: price,
     };
 
     await fetch("https://various-roan-bean.glitch.me/pay", {
