@@ -60,7 +60,7 @@ const Chart = () => {
         return (acc += price);
       }, 0);
     };
-    const price = `${getFormatPrice(getTotalPrice())} сум`;
+    const price = `${getFormatPrice(getTotalPrice())}`;
     const data = {
       queryId,
       products: chart,
