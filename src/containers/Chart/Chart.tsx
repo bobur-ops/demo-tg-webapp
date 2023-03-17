@@ -71,7 +71,7 @@ const Chart = () => {
       price: price,
     };
 
-    await fetch("https://various-roan-bean.glitch.me/pay", {
+    await fetch("http://emilkhairullin.ru:8000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
