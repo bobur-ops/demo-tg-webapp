@@ -61,7 +61,7 @@ const Chart = () => {
       comment,
     };
 
-    await fetch("https://various-roan-bean.glitch.me/pay", {
+    fetch("https://various-roan-bean.glitch.me/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const Chart = () => {
       body: JSON.stringify(data),
     });
 
-    localStorage.chart = JSON.stringify([]);
+    localStorage.chart = JSON.stringify(null);
     onClose();
   }, [queryId, chart, delieveryWay]);
 
