@@ -16,7 +16,7 @@ const ProductPage = () => {
 
   const onSendData = useCallback(() => {
     const chart = localStorage.chart;
-    alert("It is pressed");
+    alert(chart);
     if (chart) {
       localStorage.chart = JSON.stringify([product, ...JSON.parse(chart)]);
     } else {
