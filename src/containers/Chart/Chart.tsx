@@ -70,8 +70,9 @@ const Chart = () => {
       comment,
       price: price,
     };
+    // https://web-app-demo.herokuapp.com/pay
 
-    await fetch("https://web-app-demo.herokuapp.com/pay", {
+    await fetch("http://localhost:5173/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
