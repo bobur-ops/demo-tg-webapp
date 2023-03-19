@@ -72,7 +72,7 @@ const Chart = () => {
     };
     // https://web-app-demo.herokuapp.com/pay
 
-    await fetch("https://web-app-demo.herokuapp.com/pay", {
+    await fetch("http://localhost:3000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
