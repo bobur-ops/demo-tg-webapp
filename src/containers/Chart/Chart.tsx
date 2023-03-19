@@ -4,6 +4,7 @@ import { useGlobalStore } from "../../context/globalContext";
 import { getFormatPrice } from "../../utils";
 import { useTelegram } from "../../utils/useTelegram";
 import "./Chart.css";
+import { toast } from "react-hot-toast";
 
 interface ISelectDeliever {
   onChange: (value: string) => void;
@@ -73,12 +74,20 @@ const Chart = () => {
     };
     // https://web-app-demo.herokuapp.com/pay
 
-    await fetch(`https://web-app-demo.herokuapp.com/pay`, {
+    const response = await fetch(`https://web-app-demo.herokuapp.com/pay`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+    });
+
+    const response_json = await response.json();
+
+    toast.promise(Promise.resolve(response_json), {
+      loading: "Пожалуйста подождите...",
+      success: "Успешно!",
+      error: "Что то пошло не так, попробуйте позже",
     });
 
     clearChart();
