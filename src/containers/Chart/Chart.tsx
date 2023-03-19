@@ -75,6 +75,9 @@ const Chart = () => {
     };
     // https://web-app-demo.herokuapp.com/pay
 
+    const url = `${baseUrl}/pay`;
+    alert(url);
+
     await fetch(`${baseUrl}/pay`, {
       method: "POST",
       headers: {
@@ -84,7 +87,7 @@ const Chart = () => {
     });
 
     clearChart();
-    onClose();
+    // onClose();
   }, [queryId, chart, delieveryWay, comment]);
 
   React.useEffect(() => {
