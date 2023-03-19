@@ -55,43 +55,40 @@ const Chart = () => {
   }, []);
 
   const onSendData = React.useCallback(async () => {
-    const getTotalPrice = () => {
-      return chart.reduce((acc, item) => {
-        const price = parseInt(item.price);
+    try {
+      toast("Пожалуйста подождите...");
+      const getTotalPrice = () => {
+        return chart.reduce((acc, item) => {
+          const price = parseInt(item.price);
 
-        return (acc += price);
-      }, 0);
-    };
-    const price = `${getFormatPrice(getTotalPrice())}`;
-    const data = {
-      queryId,
-      products: chart,
-      delievery: delieveryWay,
-      delievery_time: "17:00",
-      comment,
-      price: price,
-      client_username: initDataUnsafe?.user?.username,
-    };
-    // https://web-app-demo.herokuapp.com/pay
+          return (acc += price);
+        }, 0);
+      };
+      const price = `${getFormatPrice(getTotalPrice())}`;
+      const data = {
+        queryId,
+        products: chart,
+        delievery: delieveryWay,
+        delievery_time: "17:00",
+        comment,
+        price: price,
+        client_username: initDataUnsafe?.user?.username,
+      };
 
-    const response = await fetch(`https://web-app-demo.herokuapp.com/pay`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+      await fetch(`https://web-app-demo.herokuapp.com/pay`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const response_json = await response.json();
-
-    toast.promise(Promise.resolve(response_json), {
-      loading: "Пожалуйста подождите...",
-      success: "Успешно!",
-      error: "Что то пошло не так, попробуйте позже",
-    });
-
-    clearChart();
-    // onClose();
+      clearChart();
+      onClose();
+      toast.success("Ваш заказ принят!");
+    } catch (error) {
+      toast.error("Что то пошло не так, попробуйте позже");
+    }
   }, [queryId, chart, delieveryWay, comment]);
 
   React.useEffect(() => {
