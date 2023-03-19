@@ -5,6 +5,8 @@ import { getFormatPrice } from "../../utils";
 import { useTelegram } from "../../utils/useTelegram";
 import "./Chart.css";
 
+const baseUrl = process.env.REACT_BASE_URL;
+
 interface ISelectDeliever {
   onChange: (value: string) => void;
   value: string;
@@ -73,7 +75,7 @@ const Chart = () => {
     };
     // https://web-app-demo.herokuapp.com/pay
 
-    await fetch("https://web-app-demo.herokuapp.com/pay", {
+    await fetch(`${baseUrl}/pay`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
