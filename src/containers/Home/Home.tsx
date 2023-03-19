@@ -15,6 +15,9 @@ const Home = () => {
         Корзина
       </Link>
       <ProductList products={products} />
+      <button>
+        <Link to={"/demo"}>Go to demo page</Link>
+      </button>
     </div>
   );
 };
