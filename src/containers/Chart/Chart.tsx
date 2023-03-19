@@ -69,7 +69,7 @@ const Chart = () => {
       delievery_time: "17:00",
       comment,
       price: price,
-      tgData: initDataUnsafe,
+      client_username: initDataUnsafe?.user?.username,
     };
     // https://web-app-demo.herokuapp.com/pay
 
