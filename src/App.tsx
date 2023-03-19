@@ -39,6 +39,7 @@ const DemoPage = () => {
   return (
     <div>
       <button>Send data</button>
+      {JSON.stringify(initDataUnsafe)}
     </div>
   );
 };
