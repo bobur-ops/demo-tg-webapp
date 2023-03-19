@@ -43,7 +43,7 @@ const Chart = () => {
   );
   const [comment, setComment] = React.useState("");
 
-  const { tg, queryId, onClose } = useTelegram();
+  const { tg, queryId, onClose, initDataUnsafe } = useTelegram();
 
   React.useEffect(() => {
     tg.MainButton.setParams({
@@ -69,6 +69,7 @@ const Chart = () => {
       delievery_time: "17:00",
       comment,
       price: price,
+      tgData: initDataUnsafe,
     };
     // https://web-app-demo.herokuapp.com/pay
 
