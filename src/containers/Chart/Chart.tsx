@@ -4,7 +4,6 @@ import { useGlobalStore } from "../../context/globalContext";
 import { getFormatPrice } from "../../utils";
 import { useTelegram } from "../../utils/useTelegram";
 import "./Chart.css";
-import { toast } from "react-hot-toast";
 
 interface ISelectDeliever {
   onChange: (value: string) => void;
@@ -55,40 +54,35 @@ const Chart = () => {
   }, []);
 
   const onSendData = React.useCallback(async () => {
-    try {
-      toast("Пожалуйста подождите...");
-      const getTotalPrice = () => {
-        return chart.reduce((acc, item) => {
-          const price = parseInt(item.price);
+    const getTotalPrice = () => {
+      return chart.reduce((acc, item) => {
+        const price = parseInt(item.price);
 
-          return (acc += price);
-        }, 0);
-      };
-      const price = `${getFormatPrice(getTotalPrice())}`;
-      const data = {
-        queryId,
-        products: chart,
-        delievery: delieveryWay,
-        delievery_time: "17:00",
-        comment,
-        price: price,
-        client_username: initDataUnsafe?.user?.username,
-      };
+        return (acc += price);
+      }, 0);
+    };
+    const price = `${getFormatPrice(getTotalPrice())}`;
+    const data = {
+      queryId,
+      products: chart,
+      delievery: delieveryWay,
+      delievery_time: "17:00",
+      comment,
+      price: price,
+      client_username: initDataUnsafe?.user?.username,
+    };
+    // https://web-app-demo.herokuapp.com/pay
 
-      await fetch(`https://web-app-demo.herokuapp.com/pay`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    await fetch(`https://web-app-demo.herokuapp.com/pay`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-      clearChart();
-      onClose();
-      toast.success("Ваш заказ принят!");
-    } catch (error) {
-      toast.error("Что то пошло не так, попробуйте позже");
-    }
+    clearChart();
+    // onClose();
   }, [queryId, chart, delieveryWay, comment]);
 
   React.useEffect(() => {
